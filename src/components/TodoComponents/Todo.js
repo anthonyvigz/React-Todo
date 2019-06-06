@@ -1,11 +1,18 @@
-import React from 'react';
+import React from "react";
 
 const Todo = props => {
-    return (
-        <h3>hey</h3>
-    )
-}
-
-
+  return (
+    <h1
+      style={
+        props.todoitem.completed
+          ? { textDecoration: "line-through", background: "lightblue" }
+          : null
+      }
+      onClick={() => props.todoToggle(props.todoitem.id)}
+    >
+      {props.todoitem.task}
+    </h1>
+  );
+};
 
 export default Todo;
