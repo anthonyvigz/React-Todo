@@ -22,6 +22,35 @@ class App extends React.Component {
     };
   }
   
+  addItem = event => {
+    event.preventDefault();
+    let newTodo = { task: this.state.todo, id: Date.now(), completed: false };
+    this.setState({ todos: [...this.state.todos, newTodo], todo: "" });
+  };
+
+  changeHandler = event => {
+    this.setState({ todo: event.target.value });
+  };
+
+  todoToggle = id => {
+    let todos = this.state.todos.slice();
+    todos = todos.map(todo => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+        return todo;
+      } else {
+        return todo;
+      }
+    });
+    this.setState({ todos });
+  };
+
+  clearCompleted = event => {
+    event.preventDefault();
+    let todos = this.state.todos.slice();
+    todos = todos.filter(todo => !todo.completed);
+    this.setState({ todos });
+  };
   
   render() {
     return (
